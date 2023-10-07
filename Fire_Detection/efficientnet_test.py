@@ -36,15 +36,15 @@ def test(model):
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--arch", type=str, default="efficientnet_b0")
-    parser.add_argument("--resume", type=str, default="experiments/fire/best.pth") #path
-    parser.add_argument("--gpu", type=int, default=0)
+    parser.add_argument("--resume", type=str, default="D:\\Users\\fisal\\PycharmProjects\\WildfireDetectionNASA\\Fire_Detection\\experiments\\fire\\best.pth") #path
+    parser.add_argument("--cpu", type=int, default=0)
     return parser.parse_args()
 
 def main():
     args = parse_args()
     model = getattr(models, args.arch)(pretrained=args.resume)
     model = nn.DataParallel(model)
-    state_dict = torch.load(args.resume, map_location="cuda:%d" % args.gpu)
+    state_dict = torch.load(args.resume, map_location=torch.device('cpu'))
     #print(state_dict["model"]["classifier.1.bias"].shape)
     model.load_state_dict(state_dict["model"])
     model.to("cuda:%d" % args.gpu)
