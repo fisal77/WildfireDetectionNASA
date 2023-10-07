@@ -1,0 +1,8 @@
+nohup: ignoring input
+Epoch:   0% 0/80 [00:00<?, ?it/s]
+Train:   0% 0/342 [00:00<?, ?it/s][A{'trainer': {'name': 'Trainer', 'num_epochs': 80, 'output_dir': 'experiments/fire_1'}, 'model': {'name': 'efficientnet_b1', 'num_classes': 1}, 'dataset': {'name': 'DataLoader', 'root': '/home/cchoi/fire/efficientnet-pytorch/efficientnet/datasets/fire_data', 'batch_size': 80, 'image_size': 224}, 'optimizer': {'name': 'SGD', 'lr': 0.0125, 'weight_decay': 0.0001, 'momentum': 0.9, 'nesterov': True}, 'scheduler': {'name': 'MultiStepLR', 'milestones': [20, 40, 60], 'gamma': 0.1}}
+
+Train:   0% 0/342 [00:25<?, ?it/s, train loss: 1.7964.][A
+Train:   0% 1/342 [00:25<2:26:07, 25.71s/it, train loss: 1.7964.][A
+Train:   0% 1/342 [00:27<2:26:07, 25.71s/it, train loss: 12.5391.][A
+Train:   1% 2/342 [00:27<1:44:30, 18.44s/it, train loss: 12.5391.][A
