@@ -22,7 +22,7 @@ def test_output(model):
         with torch.no_grad():
             _ = torch.from_numpy(frame).float()
             _ = torch.reshape(_, (1, 3, 224, 224))
-            y = model(_.cuda())
+            y = model(_.cpu())
             print(torch.sigmoid(y))
 
 def test(model):
@@ -43,11 +43,15 @@ def parse_args():
 def main():
     args = parse_args()
     model = getattr(models, args.arch)(pretrained=args.resume)
-    model = nn.DataParallel(model)
+    # model = nn.DataParallel(model)
+    model = torch.nn.DataParallel(model).cpu()
     state_dict = torch.load(args.resume, map_location=torch.device('cpu'))
     #print(state_dict["model"]["classifier.1.bias"].shape)
-    model.load_state_dict(state_dict["model"])
-    model.to("cuda:%d" % args.gpu)
+    print('77777777777777777777777')
+    for key in state_dict:
+        print(key)
+    # model.load_state_dict(state_dict["model"])
+    model.to("cpu:%d" % args.cpu)
     model.eval()
     #test(model)
     test_output(model)
